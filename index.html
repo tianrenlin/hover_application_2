@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{margin:0;padding:0;list-style: none;}
+		.warpper{display: flex;justify-content: space-between;width: 1100px;height: auto;margin: 30px auto;border:1px solid #999;}
+		.box{position: relative;width: 260px;height: 200px;display: flex;flex-direction: column;}
+		.countent{flex: 1;background: gray;display: flex;align-items: center;justify-content: center;}
+		.list_1{background: red;}
+		.list_2{background: yellow;}
+		.list_3{background: blue;}
+		.list_4{background: green;}
+		.list ul{display: flex;flex-direction: row;}
+		.list li{flex: 1;text-align: center;}
+		.list li:hover{background: white;cursor: pointer;}
+		
+		.list:hover+.hover{display: block;}
+
+		.hover{position: absolute;bottom: -55px;display: none;}
+		.angle{position: absolute;top: -19px;width: 1px;border-width: 10px;border-style: 
+			solid;border-color: transparent transparent #eee transparent; }
+		.tips{border:1px solid #eee;background: #eee;}
+	</style>
+</head>
+<body>
+	<div class="warpper">
+		<div class="div_1 box">
+			<div class="countent">内容框1</div>
+			<div class="list_1 list">
+				<ul>
+					<li>第一个项目</li>
+					<li>第二个项目</li>
+					<li>第三个项目</li>
+				</ul>
+			</div>
+			<div class="hover">
+				<div class="angle"></div>
+				<div class="tips">提示框，提示内容，提示信息，提示框，提示内容，提示信息</div>
+			</div>
+		</div>
+		<div class="div_2 box">
+			<div class="countent">内容框2</div>
+			<div class="list_2 list">
+				<ul>
+					<li>第一</li>
+					<li>第二</li>
+					<li>第三</li>
+					<li>第四</li>
+				</ul>
+			</div>
+			<div class="hover">
+				<div class="angle"></div>
+				<div class="tips">提示框，提示内容，提示信息，提示框，提示内容，提示信息</div>
+			</div>
+		</div>
+		<div class="div_3 box">
+			<div class="countent">内容框3</div>
+			<div class="list_3 list">
+				<ul>
+					<li>第一个项目</li>
+					<li>第二个项目</li>
+				</ul>
+			</div>
+			<div class="hover">
+				<div class="angle"></div>
+				<div class="tips">提示框，提示内容，提示信息，提示框，提示内容，提示信息</div>
+			</div>
+		</div>
+		<div class="div_4 box">
+			<div class="countent">内容框4</div>
+			<div class="list_4 list">
+				<ul>
+					<li>总项目</li>
+				</ul>
+			</div>
+			<div class="hover">
+				<div class="angle"></div>
+				<div class="tips">提示框，提示内容，提示信息，提示框，提示内容，提示信息</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+/* 
+三角形位置控制：
+三角形：w21 中间值 10
+方法：
+第一个箭头：每一个列表的宽度除以2再减去10
+第二个箭头：第一个列表的宽度+每一个列表宽度除以2再减去10
+……以此类推……
+*/
+var angle=$('.angle')
+var hover=$('.hover')
+var list=$('.list li')
+let [ind,wid,left]=[null,null,null]
+	list.on('mouseover',function(e){
+		ind=$(this).index()
+		wid=$(this).width()
+		if(ind){
+			left=ind*wid+wid/2-10
+		}
+		else{
+			left=wid/2-10
+		}
+		angle.css('left',left)
+	})
+</script>
